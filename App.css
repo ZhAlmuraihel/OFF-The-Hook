@@ -1,0 +1,17 @@
+.email__card{
+  padding: 10px;
+  background-color: #E3E1E2;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.cp{
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.content-left {
+  text-align: left;
+}

@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "html-to-text": "^9.0.5",
+    "isomorphic-fetch": "^3.0.0",
+    "mongoose": "^8.3.4",
+    "node-schedule": "^2.1.1",
+    "nodemon": "^3.1.0",
+    "puppeteer": "^22.8.1",
+    "simple-oauth2": "^5.0.0",
+    "winston": "^3.13.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "name": "mailer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
