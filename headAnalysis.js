@@ -1,5 +1,6 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
+const logger = require('../helpers/logger');
 const app = express();
 
 // Puppeteer scraping function
@@ -17,11 +18,16 @@ async function scrapeData(emailContent) {
             input.value = emailContent;
         }, emailContent);
 
-        // Click the submit button
-        await page.click('#ctl00_ContentPlaceHolder1_btnAction');
+        
+        try {
+            // Click the submit button
+            await page.click('#ctl00_ContentPlaceHolder1_btnAction');
+            // Wait for the next page to load
+            await page.waitForNavigation({ waitUntil: 'networkidle0' });
+        } catch (error) {
+            logger.warn(error.message)            
+        }
 
-        // Wait for the next page to load
-        await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
         // Select the required data from the new page
         // const extractedData = await page.$eval('.panel-body > .container-dmarc-compliance > div > ul', ul => ul.innerText);

@@ -1,42 +1,20 @@
-const express = require('express');
-const readEmails = require('./src/processes/readMail');
-const {checkTokensAndPerformAction} = require('./src/processes/process')
-const authRoutes = require('./src/routes/auth');
-const cors = require('cors')
-const app = express();
-const mongoose = require('mongoose');
-const schedule = require('node-schedule');
-const logger = require('./src/helpers/logger')
-require('dotenv').config()
-var corsOptions = {
-    origin: '*',
-};
+import React from "react";
+import ReactDOM from "react-dom/client";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
-app.use(express.json());
-app.use(cors(corsOptions));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <>
+    <BrowserRouter>
+      <App />
+      <ToastContainer />
+    </BrowserRouter>
+  </>
+);
 
-// Use auth routes
-app.use(authRoutes);
-app.use(require('./src/routes/readMail'));
-
-
-mongoose
-    .connect(process.env.MONGO_URL, {
-        dbName: process.env.DBNAME,
-    })
-    .then(() => {
-        logger.info("Connected to the database") 
-    })
-    .catch((error) => {
-        logger.info(`Connected to the database ${error.message}`)
-    });
-
-
-
-schedule.scheduleJob('*/60 * * * * *', checkTokensAndPerformAction);
-
-// checkTokensAndPerformAction()
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    logger.info(`Server running on http://localhost:${PORT}`);
-});
+reportWebVitals();
